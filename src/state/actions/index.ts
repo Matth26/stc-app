@@ -26,9 +26,14 @@ export interface UpdateCurrentAction {
   payload: string;
 }
 
+export interface ToggleEditModeAction {
+  type: ActionType.TOGGLE_EDIT_MODE;
+}
+
 export type Action =
   | AddStepAction
   | RemoveStepAction
   | UpdateStepAction
   | UpdateGoalAction
-  | UpdateCurrentAction;
+  | UpdateCurrentAction
+  | ToggleEditModeAction;

@@ -1,16 +1,16 @@
-import { useTypedSelector } from '../hooks/use-typed-selector';
 import { Step } from '../state/step';
 import StepListItem from './stepListItem';
 
 interface StepListProps {
+  mode: 'read' | 'edit';
   steps: Step[];
 }
 
-const StepList: React.FC<StepListProps> = ({ steps }) => {
+const StepList: React.FC<StepListProps> = ({ mode, steps }) => {
   return (
     <div>
       {steps.map((s: Step) => {
-        return <StepListItem key={s.id} step={s} />;
+        return <StepListItem key={s.id} step={s} mode={mode} />;
       })}
     </div>
   );

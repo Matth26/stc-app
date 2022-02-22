@@ -7,6 +7,7 @@ const randomID = () => Math.random().toString(36).substring(2, 5);
 
 export interface StcState {
   id: string;
+  mode: 'read' | 'edit';
   current: string;
   goal: string;
   steps: Step[];
@@ -14,8 +15,9 @@ export interface StcState {
 
 const initialState: StcState = {
   id: randomID(),
-  current: '',
-  goal: '',
+  mode: 'read',
+  current: 'aaaaa',
+  goal: 'aaaaaa',
   steps: [],
 };
 
@@ -46,6 +48,10 @@ const reducer = produce((state = initialState, action: Action) => {
         date: action.payload.date,
         text: action.payload.text,
       };
+      return state;
+    case ActionType.TOGGLE_EDIT_MODE:
+      if (state.mode === 'edit') state.mode = 'read';
+      else state.mode = 'edit';
       return state;
     default:
       return state;

@@ -5,6 +5,7 @@ import {
   UpdateStepAction,
   UpdateGoalAction,
   UpdateCurrentAction,
+  ToggleEditModeAction,
 } from '../actions';
 
 export const addStep = (date: Date, text: string): AddStepAction => {
@@ -43,5 +44,11 @@ export const updateCurrent = (text: string): UpdateCurrentAction => {
   return {
     type: ActionType.UPDATE_CURRENT,
     payload: text,
+  };
+};
+
+export const toggleEditMode = (): ToggleEditModeAction => {
+  return {
+    type: ActionType.TOGGLE_EDIT_MODE,
   };
 };
