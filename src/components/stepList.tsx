@@ -1,13 +1,13 @@
 import { useTypedSelector } from '../hooks/use-typed-selector';
 import { Step } from '../state/step';
+import StepListItem from './stepListItem';
 
 const StepList: React.FC = () => {
   const steps = useTypedSelector(({ stc: { steps } }) => steps);
-  console.log(steps);
   return (
     <div>
       {steps.map((s: Step) => {
-        return <div key={s.id}>{s.id}</div>;
+        return <StepListItem key={s.id} step={s} />;
       })}
     </div>
   );

@@ -1,4 +1,3 @@
-import { stringify } from 'querystring';
 import { ActionType } from '../action-types';
 import {
   AddStepAction,
