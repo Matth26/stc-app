@@ -6,6 +6,11 @@ export interface AddStepAction {
   payload: { date: Date; text: string };
 }
 
+export interface RemoveStepAction {
+  type: ActionType.REMOVE_STEP;
+  payload: string;
+}
+
 export interface UpdateStepAction {
   type: ActionType.UPDATE_STEP;
   payload: Step;
@@ -23,6 +28,7 @@ export interface UpdateCurrentAction {
 
 export type Action =
   | AddStepAction
+  | RemoveStepAction
   | UpdateStepAction
   | UpdateGoalAction
   | UpdateCurrentAction;

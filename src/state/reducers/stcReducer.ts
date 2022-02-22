@@ -5,7 +5,7 @@ import { Step } from '../step';
 
 const randomID = () => Math.random().toString(36).substring(2, 5);
 
-interface StcState {
+export interface StcState {
   id: string;
   current: string;
   goal: string;
@@ -14,8 +14,8 @@ interface StcState {
 
 const initialState: StcState = {
   id: randomID(),
-  current: 'a',
-  goal: 'a',
+  current: '',
+  goal: '',
   steps: [],
 };
 
@@ -24,6 +24,12 @@ const reducer = produce((state = initialState, action: Action) => {
     case ActionType.ADD_STEP:
       const { date, text } = action.payload;
       state.steps.push({ id: randomID(), date, text });
+      return state;
+    case ActionType.REMOVE_STEP:
+      let indexToRemove = state.steps.findIndex(
+        (e: Step) => e.id === action.payload
+      );
+      if (indexToRemove !== -1) state.steps.splice(indexToRemove, 1);
       return state;
     case ActionType.UPDATE_CURRENT:
       state.current = action.payload;

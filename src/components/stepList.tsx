@@ -2,8 +2,11 @@ import { useTypedSelector } from '../hooks/use-typed-selector';
 import { Step } from '../state/step';
 import StepListItem from './stepListItem';
 
-const StepList: React.FC = () => {
-  const steps = useTypedSelector(({ stc: { steps } }) => steps);
+interface StepListProps {
+  steps: Step[];
+}
+
+const StepList: React.FC<StepListProps> = ({ steps }) => {
   return (
     <div>
       {steps.map((s: Step) => {

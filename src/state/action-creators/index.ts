@@ -1,6 +1,7 @@
 import { ActionType } from '../action-types';
 import {
   AddStepAction,
+  RemoveStepAction,
   UpdateStepAction,
   UpdateGoalAction,
   UpdateCurrentAction,
@@ -10,6 +11,13 @@ export const addStep = (date: Date, text: string): AddStepAction => {
   return {
     type: ActionType.ADD_STEP,
     payload: { date: date, text: text },
+  };
+};
+
+export const removeStep = (id: string): RemoveStepAction => {
+  return {
+    type: ActionType.REMOVE_STEP,
+    payload: id,
   };
 };
 
