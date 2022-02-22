@@ -1,4 +1,4 @@
-import { Step } from '../state/step';
+import { Step } from '../state/types';
 import StepListItem from './stepListItem';
 
 interface StepListProps {
@@ -8,7 +8,7 @@ interface StepListProps {
 
 const StepList: React.FC<StepListProps> = ({ mode, steps }) => {
   return (
-    <div>
+    <div className="ml-4">
       {steps.map((s: Step) => {
         return <StepListItem key={s.id} step={s} mode={mode} />;
       })}

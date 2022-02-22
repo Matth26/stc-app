@@ -13,6 +13,7 @@ interface StcProps {
 
 const Stc: React.FC<StcProps> = ({ id: string }) => {
   const stc = useTypedSelector(({ stc }) => stc);
+  const charts = useTypedSelector(({ charts }) => charts.charts);
   console.log(stc);
 
   const { updateCurrent, updateGoal, addStep, toggleEditMode } = useActions();
@@ -45,7 +46,11 @@ const Stc: React.FC<StcProps> = ({ id: string }) => {
             onChange={(e) => updateGoal(e.target.value)}
           />
         ) : (
-          <div>{stc.goal}</div>
+          <div className="content">
+            {stc.goal.split('\n').map((p: string) => (
+              <p className="m-0">{p}</p>
+            ))}
+          </div>
         )}
       </div>
 
@@ -100,7 +105,11 @@ const Stc: React.FC<StcProps> = ({ id: string }) => {
             onChange={(e) => updateCurrent(e.target.value)}
           />
         ) : (
-          <div>{stc.goal}</div>
+          <div className="content">
+            {stc.current.split('\n').map((p: string) => (
+              <p className="m-0">{p}</p>
+            ))}
+          </div>
         )}
       </div>
     </>

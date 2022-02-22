@@ -3,17 +3,46 @@ import 'bulma/css/bulma.min.css';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './state';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import useScript from './hooks/use-script';
 
-import Stc from './components/stc';
+import Layout from './components/layout';
+
+import Home from './pages/home';
+import NoMatch from './pages/no-match';
+import Chart from './pages/chart';
+import ChartList from './pages/chartList';
 
 const App = () => {
   useScript('https://use.fontawesome.com/releases/v5.3.1/js/all.js');
+
+  const charts = [
+    {
+      id: '1',
+      title: 'First Chart',
+    },
+    {
+      id: '2',
+      title: 'Second Chart',
+    },
+  ];
+
   return (
     <Provider store={store}>
-      <div className="container">
-        <Stc id="bbb" />
-      </div>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="charts" element={<ChartList />} />
+            <Route path="c">
+              <Route path=":chartId" element={<Chart />} />
+            </Route>
+
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </Router>
     </Provider>
   );
 };

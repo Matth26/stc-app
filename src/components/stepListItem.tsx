@@ -1,4 +1,4 @@
-import { Step } from '../state/step';
+import { Step } from '../state/types';
 import { useActions } from '../hooks/use-actions';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -44,12 +44,7 @@ const StepListItem: React.FC<StepListItemProps> = ({ mode, step }) => {
       )}
 
       {mode === 'edit' && (
-        <span
-          className="icon is-small has-text-danger mr-1"
-          onClick={() => removeStep(step.id)}
-        >
-          <i className="fas fa-times"></i>
-        </span>
+        <button className="delete" onClick={() => removeStep(step.id)}></button>
       )}
     </div>
   );
