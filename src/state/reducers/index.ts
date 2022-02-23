@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import stcReducer from './stcReducer';
-import chartsReducer from './chartsReducer';
 
-const reducers = combineReducers({ stc: stcReducer, charts: chartsReducer });
+const reducers = combineReducers({ stc: stcReducer });
 
 export default reducers;
 

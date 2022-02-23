@@ -4,6 +4,7 @@ import { useActions } from '../hooks/use-actions';
 import StepList from './stepList';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import { StcState, Stc as StcType } from '../state/types';
 
 import styles from '../styles/Stc.module.css';
 
@@ -11,12 +12,13 @@ interface StcProps {
   id: string;
 }
 
-const Stc: React.FC<StcProps> = ({ id: string }) => {
-  const stc = useTypedSelector(({ stc }) => stc);
-  const charts = useTypedSelector(({ charts }) => charts.charts);
-  console.log(stc);
+const Stc: React.FC<StcProps> = ({ id }) => {
+  const stc: StcState = useTypedSelector(({ stc }) => stc);
+  const chart: StcType = stc.charts[id];
 
-  const { updateCurrent, updateGoal, addStep, toggleEditMode } = useActions();
+  const { updateCurrent, updateGoal, addStep, toggleEditMode, selectChart } =
+    useActions();
+  selectChart(id);
   const [date, setDate] = useState<Date>(new Date());
   const [step, setStep] = useState('');
 
@@ -42,13 +44,15 @@ const Stc: React.FC<StcProps> = ({ id: string }) => {
           <textarea
             className="textarea"
             placeholder="Goal"
-            value={stc.goal}
+            value={chart.goal}
             onChange={(e) => updateGoal(e.target.value)}
           />
         ) : (
           <div className="content">
-            {stc.goal.split('\n').map((p: string) => (
-              <p className="m-0">{p}</p>
+            {chart.goal.split('\n').map((p: string, index: number) => (
+              <p key={index} className="m-0">
+                {p}
+              </p>
             ))}
           </div>
         )}
@@ -56,7 +60,7 @@ const Stc: React.FC<StcProps> = ({ id: string }) => {
 
       <div className="mb-4 mt-2">
         <h2 className="title is-4 mb-3">Steps</h2>
-        <StepList mode={stc.mode} steps={stc.steps} />
+        <StepList mode={stc.mode} steps={chart.steps} />
 
         {stc.mode === 'edit' && (
           <>
@@ -101,13 +105,15 @@ const Stc: React.FC<StcProps> = ({ id: string }) => {
           <textarea
             className="textarea"
             placeholder="Current"
-            value={stc.current}
+            value={chart.current}
             onChange={(e) => updateCurrent(e.target.value)}
           />
         ) : (
           <div className="content">
-            {stc.current.split('\n').map((p: string) => (
-              <p className="m-0">{p}</p>
+            {chart.current.split('\n').map((p: string, index: number) => (
+              <p key={index} className="m-0">
+                {p}
+              </p>
             ))}
           </div>
         )}

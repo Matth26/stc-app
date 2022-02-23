@@ -16,17 +16,6 @@ import ChartList from './pages/chartList';
 const App = () => {
   useScript('https://use.fontawesome.com/releases/v5.3.1/js/all.js');
 
-  const charts = [
-    {
-      id: '1',
-      title: 'First Chart',
-    },
-    {
-      id: '2',
-      title: 'Second Chart',
-    },
-  ];
-
   return (
     <Provider store={store}>
       <Router>
@@ -36,6 +25,7 @@ const App = () => {
             <Route path="home" element={<Home />} />
             <Route path="charts" element={<ChartList />} />
             <Route path="c">
+              <Route index element={<ChartList />} />
               <Route path=":chartId" element={<Chart />} />
             </Route>
 

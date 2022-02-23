@@ -7,8 +7,13 @@ export interface Step {
 export interface Stc {
   id: string;
   name: string;
-  mode: 'read' | 'edit';
   current: string;
   goal: string;
   steps: Step[];
+}
+
+export interface StcState {
+  selectedId: string | undefined;
+  mode: 'read' | 'edit';
+  charts: { [key: string]: Stc };
 }

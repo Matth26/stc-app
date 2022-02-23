@@ -1,33 +1,48 @@
-import { ActionStcType } from '../action-types';
+import { StcActionType } from '../action-types';
 import { Step } from '../types';
 
 export interface AddStepAction {
-  type: ActionStcType.ADD_STEP;
+  type: StcActionType.ADD_STEP;
   payload: { date: Date; text: string };
 }
 
 export interface RemoveStepAction {
-  type: ActionStcType.REMOVE_STEP;
+  type: StcActionType.REMOVE_STEP;
   payload: string;
 }
 
 export interface UpdateStepAction {
-  type: ActionStcType.UPDATE_STEP;
+  type: StcActionType.UPDATE_STEP;
   payload: Step;
 }
 
 export interface UpdateGoalAction {
-  type: ActionStcType.UPDATE_GOAL;
+  type: StcActionType.UPDATE_GOAL;
   payload: string;
 }
 
 export interface UpdateCurrentAction {
-  type: ActionStcType.UPDATE_CURRENT;
+  type: StcActionType.UPDATE_CURRENT;
   payload: string;
 }
 
 export interface ToggleEditModeAction {
-  type: ActionStcType.TOGGLE_EDIT_MODE;
+  type: StcActionType.TOGGLE_EDIT_MODE;
+}
+
+export interface AddChartAction {
+  type: StcActionType.ADD_CHART;
+  payload: string;
+}
+
+export interface RemoveChartAction {
+  type: StcActionType.REMOVE_CHART;
+  payload: string;
+}
+
+export interface SelectChartAction {
+  type: StcActionType.SELECT_CHART;
+  payload: string;
 }
 
 export type StcAction =
@@ -36,4 +51,7 @@ export type StcAction =
   | UpdateStepAction
   | UpdateGoalAction
   | UpdateCurrentAction
-  | ToggleEditModeAction;
+  | ToggleEditModeAction
+  | AddChartAction
+  | RemoveChartAction
+  | SelectChartAction;
