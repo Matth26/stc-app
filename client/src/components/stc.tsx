@@ -25,7 +25,7 @@ const Stc: React.FC<StcProps> = ({ id }) => {
   return (
     <>
       <div className="is-flex is-justify-content-space-between is-align-items-center">
-        <h1 className="title mt-4">Structural Tension Chart</h1>
+        <h1 className="title mt-4">Structural Tension Chart - {chart.name}</h1>
         <div className="is-flex is-justify-content-flex-end">
           <button
             className="button is-info m-0"

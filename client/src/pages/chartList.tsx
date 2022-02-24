@@ -9,7 +9,6 @@ const ChartList: React.FC = () => {
     ({ stc }) => stc.charts
   );
   const { removeChart, addChart } = useActions();
-
   const [chartName, setChartName] = useState('');
 
   return (

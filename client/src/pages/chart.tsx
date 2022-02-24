@@ -6,8 +6,6 @@ const Chart = () => {
 
   return (
     <>
-      <h2>Chart ID: {chartId}</h2>
-
       {chartId && <Stc id={chartId}></Stc>}
 
       <Link to="/charts">Back to Charts</Link>
