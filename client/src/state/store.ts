@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import { StcActionType } from './action-types';
 
-export const store = createStore(reducers, {}, applyMiddleware());
+export const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 store.dispatch({
   type: StcActionType.ADD_STEP,

@@ -9,3 +9,7 @@ export enum StcActionType {
   REMOVE_CHART = 'remove_chart',
   SELECT_CHART = 'select_chart',
 }
+
+export enum AuthActionType {
+  FETCH_USER = 'fetch_user',
+}
