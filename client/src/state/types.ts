@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongoose';
+
 export interface Step {
   id: string;
   date: Date;
@@ -6,6 +8,14 @@ export interface Step {
 
 export interface Stc {
   id: string;
+  name: string;
+  current: string;
+  goal: string;
+  steps: Step[];
+}
+
+export interface Chart {
+  _id: ObjectId;
   name: string;
   current: string;
   goal: string;

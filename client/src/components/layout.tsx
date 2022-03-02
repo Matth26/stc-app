@@ -1,26 +1,51 @@
+import { useEffect } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { useActions } from '../hooks/use-actions';
 import { useTypedSelector } from '../hooks/use-typed-selector';
 
 const Layout = () => {
   const { fetchUser } = useActions();
-  fetchUser();
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
-  const user: any = useTypedSelector(({ auth }) => auth.user);
+  const auth: any = useTypedSelector(({ auth }) => auth);
+
+  const displayLogin = () => {
+    if (auth === null) return <div>nullll</div>;
+    else if (auth === false)
+      return (
+        <a href="/auth/google" className="button">
+          Login with Google
+        </a>
+      );
+    else
+      return (
+        <div className="is-flex is-align-items-center">
+          <div className="mr-4">{auth.name}</div>
+          <a href="/api/logout" className="button">
+            Logout
+          </a>
+        </div>
+      );
+  };
 
   return (
     <div className="container mt-4">
       <nav
         style={{
           borderBottom: 'solid 1px',
-          paddingBottom: '1rem',
+          paddingBottom: '0.7rem',
         }}
+        className="is-flex is-align-items-center is-justify-content-space-between"
       >
-        <NavLink to="/home" style={{ marginRight: '20px' }}>
-          Home
-        </NavLink>
-        <NavLink to="/charts">Charts</NavLink>
-        <div>{user ? 'Logged In' : 'Not registered'} </div>
+        <div>
+          <NavLink to={auth ? '/charts' : '/'} style={{ marginRight: '20px' }}>
+            STC App
+          </NavLink>
+        </div>
+
+        {displayLogin()}
       </nav>
 
       <main style={{ padding: '1rem 0' }}>

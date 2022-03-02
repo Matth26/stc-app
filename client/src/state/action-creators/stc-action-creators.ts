@@ -1,3 +1,7 @@
+import axios from 'axios';
+import { Dispatch } from 'react';
+import { StcAction } from '../actions';
+
 import { StcActionType } from '../action-types';
 import {
   AddStepAction,
@@ -6,7 +10,7 @@ import {
   UpdateGoalAction,
   UpdateCurrentAction,
   ToggleEditModeAction,
-  AddChartAction,
+  //AddChartAction,
   RemoveChartAction,
   SelectChartAction,
 } from '../actions';
@@ -56,12 +60,22 @@ export const toggleEditMode = (): ToggleEditModeAction => {
   };
 };
 
-export const addChart = (name: string): AddChartAction => {
+/*export const addChart = (name: string): AddChartAction => {
   return {
     type: StcActionType.ADD_CHART,
     payload: name,
   };
-};
+};*/
+
+export const addChart =
+  (name: string) => async (dispatch: Dispatch<StcAction>) => {
+    const res = await axios.post('/api/charts', { name: name });
+    console.log(res);
+    dispatch({
+      type: StcActionType.ADD_CHART,
+      payload: name,
+    });
+  };
 
 export const removeChart = (id: string): RemoveChartAction => {
   return {

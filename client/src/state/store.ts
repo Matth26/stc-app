@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
-import { StcActionType } from './action-types';
+import { ChartsActionType } from './action-types';
 
 export const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-store.dispatch({
+/*store.dispatch({
   type: StcActionType.ADD_STEP,
   payload: { date: new Date(), text: '11111111' },
 });
@@ -31,6 +31,11 @@ store.dispatch({
 store.dispatch({
   type: StcActionType.ADD_CHART,
   payload: 'nonnon',
-});
+});*/
+
+/*store.dispatch({
+  type: ChartsActionType.SUBMIT_CHART,
+  payload: { name: 'test', current: 'ddd', goal: 'dfff', steps: [] },
+});*/
 
 //console.log(store.getState);

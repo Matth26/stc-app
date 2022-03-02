@@ -9,9 +9,10 @@ import useScript from './hooks/use-script';
 import Layout from './components/layout';
 
 import Home from './pages/home';
-import NoMatch from './pages/no-match';
+import NoMatch from './pages/noMatch';
 import Chart from './pages/chart';
 import ChartList from './pages/chartList';
+import ChartNew from './pages/chartNew';
 
 const App = () => {
   useScript('https://use.fontawesome.com/releases/v5.3.1/js/all.js');
@@ -28,7 +29,7 @@ const App = () => {
               <Route index element={<ChartList />} />
               <Route path=":chartId" element={<Chart />} />
             </Route>
-
+            <Route path="chart/new" element={<ChartNew />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>

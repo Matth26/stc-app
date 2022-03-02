@@ -1,14 +1,18 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../hooks/use-typed-selector';
-import { Stc as Chart } from '../state/types';
+import { Chart } from '../state/types';
 import { useActions } from '../hooks/use-actions';
 import { useState } from 'react';
 
 const ChartList: React.FC = () => {
-  const charts: { [key: string]: Chart } = useTypedSelector(
-    ({ stc }) => stc.charts
-  );
-  const { removeChart, addChart } = useActions();
+  const charts: Chart[] = useTypedSelector(({ charts }) => charts);
+
+  const { submitChart, deleteChart, fetchCharts } = useActions();
+  useEffect(() => {
+    fetchCharts();
+  }, [fetchCharts]);
+
   const [chartName, setChartName] = useState('');
 
   return (
@@ -16,16 +20,19 @@ const ChartList: React.FC = () => {
       <ul className="mr-3">
         {Object.values(charts).map((chart: Chart) => {
           return (
-            <li key={chart.id} className="is-flex is-align-items-center">
+            <li
+              key={String(chart._id)}
+              className="is-flex is-align-items-center"
+            >
               <span className="icon is-small mr-2 ">
                 <i className="fas fa-angle-right"></i>
               </span>
               <div style={{ width: '200px' }}>
-                <Link to={`/c/${chart.id}`}>{chart.name}</Link>
+                <Link to={`/c/${String(chart._id)}`}>{chart.name}</Link>
               </div>
               <button
                 className="delete is-small ml-2"
-                onClick={() => removeChart(chart.id)}
+                onClick={() => deleteChart(chart._id)}
               ></button>
             </li>
           );
@@ -45,7 +52,8 @@ const ChartList: React.FC = () => {
             <button
               className="button is-primary is-small m-0"
               onClick={() => {
-                addChart(chartName);
+                //addChart(chartName);
+                submitChart(chartName, '', '', []);
                 setChartName('');
               }}
             >

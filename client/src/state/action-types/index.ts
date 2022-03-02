@@ -13,3 +13,9 @@ export enum StcActionType {
 export enum AuthActionType {
   FETCH_USER = 'fetch_user',
 }
+
+export enum ChartsActionType {
+  FETCH_CHARTS = 'fetch_charts',
+  SUBMIT_CHART = 'submit_chart',
+  UPDATE_CHART = 'update-chart',
+}
